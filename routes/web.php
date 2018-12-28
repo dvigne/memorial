@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', 'CommentsController')->only('index');
+Route::resource('comments', 'CommentsController')
+  ->except('index')
+  ->middleware('auth');
+
+Auth::routes();
