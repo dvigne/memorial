@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Comments;
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
+use Auth;
+use Storage;
 
 class CommentsController extends Controller
 {
@@ -14,7 +17,8 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $comments = Comments::latest()->paginate(15);
+        return view('index')->with('comments', $comments);
     }
 
     /**
@@ -24,7 +28,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        return view('CommentForm');
+        return view('comment');
     }
 
     /**
@@ -33,9 +37,22 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $createdComment = Auth::user()->comments()->create([
+          'message' => $data['message']
+        ]);
+
+        if($request->hasFile('photo')) {
+          $file = $request->photo;
+          $path = Storage::putFile('photos', $file, 'public');
+          $createdComment->photo_path = $path;
+          $createdComment->save();
+        }
+
+        return redirect()->route('index');
     }
 
     /**
@@ -55,9 +72,9 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comments $comments)
+    public function edit(Comments $comment)
     {
-        return view('CommentForm');
+        return view('comment')->with('comment', $comment);
     }
 
     /**
@@ -67,9 +84,20 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comments $comments)
+    public function update(CommentRequest $request, Comments $comment)
     {
-        //
+        $data = $request->validated();
+
+        if($comment->user_id == Auth::user()->id) {
+          $comment = Comments::findOrFail($comment->id);
+          $comment->message = $data['message'];
+          $comment->save();
+        }
+        else {
+          return response(401);
+        }
+
+        return redirect()->route('index');
     }
 
     /**
@@ -78,8 +106,16 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comments $comments)
+    public function destroy(Comments $comment)
     {
-        //
+        if($comment->user_id == Auth::user()->id) {
+          $comment = Comments::findOrFail($comment->id);
+          $comment->delete();
+        }
+        else {
+          return response(401);
+        }
+
+        return redirect()->route('index');
     }
 }
