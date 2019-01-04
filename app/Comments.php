@@ -17,6 +17,10 @@ class Comments extends Model
     }
 
     protected $fillable = [
-      'id', 'first', 'last', 'message', 'photo_name'
+      'id', 'message', 'photo_name'
     ];
+
+    public function user() {
+      return $this->belongsTo('App\User');
+    }
 }
