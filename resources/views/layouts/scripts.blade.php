@@ -3,5 +3,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="js/clean-blog.js"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 @show
