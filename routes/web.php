@@ -15,5 +15,5 @@ Route::resource('/', 'CommentsController')->only('index');
 Route::resource('comments', 'CommentsController')
   ->except('index')
   ->middleware('auth');
-
+Route::get('photos', 'PhotosController@index')->name('photos');
 Auth::routes();
