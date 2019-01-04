@@ -5,10 +5,21 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public $incrementing = false;
+
+    protected static function boot(){
+    parent::boot();
+    static::creating(function ($model) {
+        $model->{$model->getKeyName()} = (string) Str::uuid();
+      });
+    }
+
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first', 'last', 'email', 'password',
+        'id', 'first', 'last', 'email', 'password',
     ];
 
     /**
@@ -27,4 +38,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function comments()
+    {
+      return $this->hasMany('App\Comments');
+    }
 }
