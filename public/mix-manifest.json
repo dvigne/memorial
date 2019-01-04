@@ -1,5 +1,5 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/clean-blog.css": "/css/clean-blog.css",
-    "/js/clean-blog.js": "/js/clean-blog.js"
+    "/js/main.js": "/js/main.js",
+    "/css/main.css": "/css/main.css",
+    "/css/auth.css": "/css/auth.css"
 }

@@ -1,0 +1,10 @@
+.carousel-item{
+  background-color: #868e96;
+  height: 600px !important;
+  img {
+    margin-top: -15% !important;
+  }
+  img:after {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+  }
+}
