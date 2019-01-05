@@ -56,6 +56,7 @@
             <div id="success"></div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary" id="sendMessageButton">Login</button>
+              <a style="float:right;" href="{{ route('password.request') }}">Forgot my password</a>
             </div>
           </form>
         </div>
