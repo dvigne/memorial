@@ -74,7 +74,12 @@ class CommentsController extends Controller
      */
     public function edit(Comments $comment)
     {
-        return view('comment')->with('comment', $comment);
+        if($comment->user_id == Auth::user()->id){
+          return view('comment')->with('comment', $comment);
+        }
+        else{
+          abort(401);
+        }
     }
 
     /**
@@ -94,7 +99,7 @@ class CommentsController extends Controller
           $comment->save();
         }
         else {
-          return response(401);
+          abort(401);
         }
 
         return redirect()->route('index');
@@ -113,7 +118,7 @@ class CommentsController extends Controller
           $comment->delete();
         }
         else {
-          return response(401);
+          abort(401);
         }
 
         return redirect()->route('index');
