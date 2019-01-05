@@ -24,7 +24,7 @@
     <!-- Main Content -->
     <div style="padding-top:50px;" class="container">
       <div class="row">
-        <div class="col-md-1 offset-md-11" style="font-size: 15px;">
+        <div style="padding-top: 20px;"class="col-md-1 offset-md-11" style="font-size: 15px;">
           <a href="{{ url('comments/create') }}"><button data-toggle="tooltip" data-placement="bottom" title="Upload a photo" style="font-size: 20px;" type="button" name="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></a>
         </div>
         @if($photos->count() > 0)
@@ -41,7 +41,9 @@
           <br>
           {{ $photos->links() }}
         @else
-          <p>No photos here yet, be the first to <a href="{{ route('comments.create') }}">post</a> a photo.</p>
+          <div class="col-md-12">
+            <p>No photos here yet, be the first to <a href="{{ route('comments.create') }}">post</a> a photo.</p>
+          </div>
         @endif
       </div>
     </div>
