@@ -75,9 +75,9 @@
                 {{ title_case($comment->user->first . " " . $comment->user->last) . " on " . str_limit($comment->created_at, 10, '') }}
                 @auth
                   @if($comment->user_id == Auth::user()->id)
-                    <a style="float: right; padding-left:2%;" href="{{ route('comments.destroy', ['comment' => $comment->id]) }}"
-                      onclick="event.preventDefault(); document.getElementById('destroy-comment').submit();"><i class="far fa-trash-alt"></i>delete comment</a>
-                    <a style="float: right" href="{{ route('comments.edit', ['comment' => $comment->id]) }}"><i class="far fa-edit"></i>edit comment</a>
+                    <a style="float: right; padding-left:2.5%;" href="{{ route('comments.destroy', ['comment' => $comment->id]) }}"
+                      onclick="event.preventDefault(); document.getElementById('destroy-comment').submit();"><i class="far fa-trash-alt"></i> delete comment</a>
+                    <a style="float: right" href="{{ route('comments.edit', ['comment' => $comment->id]) }}"><i class="far fa-edit"></i> edit comment</a>
 
                     <form id="destroy-comment" action="{{ route('comments.destroy', ['comment' => $comment->id]) }}" method="POST" style="display: none;">
                         @method('DELETE')
