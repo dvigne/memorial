@@ -24,7 +24,7 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'nullable|max:500|string',
+            'message' => 'nullable|max:2500|string',
             'photo' => 'required_without:message|nullable|image'
         ];
     }
