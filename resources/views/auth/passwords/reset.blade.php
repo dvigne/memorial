@@ -37,7 +37,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Email Address</label>
-                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email Address" id="email" name="email" required data-validation-required-message="Please enter your email address.">
+                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email Address" id="email" value="{{ $email ?? old('email') }}" name="email" required data-validation-required-message="Please enter your email address.">
                 <p class="help-block text-danger"></p>
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
@@ -68,7 +68,10 @@
             <br>
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="sendMessageButton">Reset my password</button>
+              <button onclick="document.getElementById('spinner').classList.remove('d-none');document.getElementById('text').classList.add('sr-only');" type="submit" class="btn btn-primary" id="sendMessageButton">
+                <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                <span id="text" class="">Reset my password</span>
+              </button>
             </div>
           </form>
         </div>
