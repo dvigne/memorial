@@ -40,8 +40,24 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>In Memory of Joshua S. Barton</h1>
+              <h1>In Memory of <br />Joshua S. Barton</h1>
               <span class="subheading">6/30/1989-12/8/2018</span>
+              <hr style="border-top: 1px solid white;" />
+              <h3>Memorial Service</h3>
+              <div class="row">
+                <div class="col-6">
+                  <h2>Time</h2>
+                </div>
+                <div class="col-6">
+                  <h2>Location</h2>
+                </div>
+                <div class="col-6">
+                  <h5>Sunday January 20th at 12:30pm</h5>
+                </div>
+                <div class="col-6">
+                  <a style="color: white;" href="https://goo.gl/maps/qHEaLC9mAA52"><h5>Church at the Mall <br />1010 E Memorial Blvd, Lakeland, FL 33801</h5></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -59,15 +75,26 @@
             @foreach($comments as $comment)
             <div class="post-preview">
               <p class="post-subtitle">
-                {{ $comment->message }}
+                {{ str_limit($comment->message, 500) }}
+                <br>
               </p>
-              @if(isset($comment->photo_path))
-                <div class="offset-md-5 offset-lg-4" style="padding: 10px;">
-                  <img data-toggle="modal" data-target="#photo-{{ str_limit($comment->id, 8, '') }}" width="250px;" src="{{ Storage::url($comment->photo_path) }}" class="rounded">
+              @if(strlen($comment->message) >= 500)
+                <a href="{{ route('comments.show', $comment->id) }}">
+                  <button style="" type="button" name="button" class="btn btn-black btn-xs">Read more <i class="fas fa-angle-right"></i></button>
+                </a>
+              @endif
+              @if(count($comment->photos) > 0)
+                <div class="col-md-4 offset-md-4 offset-1" style="padding: 10px;">
+                  <figure class="figure">
+                    <img data-toggle="modal" data-target="#photo-{{ str_limit($comment->photos->first()->id, 8, '') }}" width="250px;" src="{{ Storage::url($comment->photos->first()->photo_path) }}" class="rounded">
+                    @if(count($comment->photos) > 1)
+                      <figcaption class="figure-caption text-center"><a href="{{ route('comments.show', $comment->id) }}">View {{ count($comment->photos) }}+</a></figcaption>
+                    @endif
+                  </figure>
                 </div>
-                <div class="modal fade" id="photo-{{ str_limit($comment->id, 8, '') }}" tabindex="-1" role="dialog" aria-labelledby="{{ $comment->id }}" aria-hidden="true">
+                <div class="modal fade" id="photo-{{ str_limit($comment->photos->first()->id, 8, '') }}" tabindex="-1" role="dialog" aria-labelledby="{{ $comment->photos->first()->id }}" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                      <img class="img-fluid mx-auto" src="{{ Storage::url($comment->photo_path) }}">
+                      <img class="img-fluid mx-auto" src="{{ Storage::url($comment->photos->first()->photo_path) }}">
                   </div>
                 </div>
               @endif
