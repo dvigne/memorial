@@ -45,11 +45,14 @@ class CommentsController extends Controller
           'message' => $data['message']
         ]);
 
-        if($request->hasFile('photo')) {
-          $file = $request->photo;
-          $path = Storage::putFile('photos', $file, 'public');
-          $createdComment->photo_path = $path;
-          $createdComment->save();
+        if($request->hasFile('photos')) {
+          foreach ($data['photos'] as $photo) {
+            $file = $photo;
+            $path = Storage::putFile('photos', $file, 'public');
+            $createdComment->photos()->create([
+              'photo_path' => $path
+            ]);
+          }
         }
 
         return redirect()->route('index');
@@ -61,9 +64,9 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function show(Comments $comments)
+    public function show(Comments $comment)
     {
-        //
+        return view('comment')->with('comment', $comment);
     }
 
     /**
@@ -97,6 +100,17 @@ class CommentsController extends Controller
           $comment = Comments::findOrFail($comment->id);
           $comment->message = $data['message'];
           $comment->save();
+
+          if($request->hasFile('photos')) {
+            foreach ($data['photos'] as $photo) {
+              $file = $photo;
+              $path = Storage::putFile('photos', $file, 'public');
+              $comment->photos()->create([
+                'photo_path' => $path
+              ]);
+            }
+          }
+
         }
         else {
           abort(401);
