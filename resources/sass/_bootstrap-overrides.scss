@@ -25,3 +25,18 @@
   font-size: 16px;
   padding: 25px 35px;
 }
+
+.pagination li{
+  > a {
+    color: black;
+  }
+  &.active .page-link{
+    background-color: black !important;
+    border-color: black !important;
+  }
+  > .page-link:hover{
+    color: black;
+    background-color: $gray-400;
+    border-color: $gray-400;
+  }
+}
