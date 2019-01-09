@@ -25,7 +25,8 @@ class CommentRequest extends FormRequest
     {
         return [
             'message' => 'nullable|max:2500|string',
-            'photo' => 'required_without:message|nullable|image'
+            'photos' => 'required_without:message',
+            'photos.*' => 'nullable|image'
         ];
     }
 }
