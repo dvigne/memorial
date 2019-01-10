@@ -84,7 +84,7 @@
                 </a>
               @endif
               @if(count($comment->photos) > 0)
-                <div class="col-md-4 offset-md-4 offset-1" style="padding: 10px;">
+                <div class="col-md-4 offset-md-4 col-4 offset-1" style="padding: 10px;">
                   <figure class="figure">
                     <img data-toggle="modal" data-target="#photo-{{ str_limit($comment->photos->first()->id, 8, '') }}" width="250px;" src="{{ Storage::url($comment->photos->first()->photo_path) }}" class="rounded">
                     @if(count($comment->photos) > 1)
