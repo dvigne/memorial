@@ -5,6 +5,8 @@
 
 @push('stylesheets')
 <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
 @endpush
 
 @section('title', 'In Rememberance of Joshua Barton')
@@ -24,7 +26,7 @@
   <!-- Main Content -->
   <div style="padding-top:50px;" class="container">
     <div class="row">
-      <div class="col-11 mx-auto">
+      <div id="content" class="col-11 mx-auto">
         @if(Route::currentRouteName() == 'comments.show')
         <div style="padding: 10px 0 10px 0;"class="row">
           <div style="padding-top: 20px;" class="col-11 text-left">
@@ -93,11 +95,16 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <p>Upload a png, jpeg, or bmp photo</p>
-                <input style="font-size: unset;" type="file" name="photos[]" multiple>
+                <input data-url="{{ route('photos.store') }}" style="font-size: unset; padding-bottom: 10px;" id="photos" type="file" name="photo" multiple>
+                <div id="progress-div" class="progress d-none">
+                  <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><span><span/></div>
+                </div>
+                <div id="finishedList">
+                </div>
                 <p class="help-block text-danger"></p>
-                @if ($errors->has('photos'))
+                @if ($errors->has('_photos'))
                 <span style="display:block;" class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('photos') }}</strong>
+                  <strong>{{ $errors->first('_photos') }}</strong>
                 </span>
                 @endif
               </div>
@@ -105,7 +112,7 @@
             <br>
             <div id="success"></div>
             <div class="form-group">
-              <button onclick="document.getElementById('spinner').classList.remove('d-none');document.getElementById('text').classList.add('sr-only');" type="submit" class="btn btn-primary" id="sendMessageButton">
+              <button aria-disabled="false" onclick="document.getElementById('spinner').classList.remove('d-none');document.getElementById('text').classList.add('sr-only');" type="submit" class="btn btn-primary" id="sendMessageButton">
                 <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                 @isset($comment)
                 <span id="text" class="">Update Comment</span>
@@ -125,7 +132,14 @@
     @extends('layouts/footer')
 
     @extends('layouts/scripts')
-
+    @push('cdn')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.28.0/js/vendor/jquery.ui.widget.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.28.0/js/jquery.fileupload.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    @endpush
+    @push('scripts')
+      <script src="{{ asset('js/fileUploader.js') }}"type="text/javascript"></script>
+    @endpush
   </body>
 
   </html>

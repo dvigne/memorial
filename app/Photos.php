@@ -17,12 +17,17 @@ class Photos extends Model
   }
 
   protected $fillable = [
-    'id', 'comments_id', 'photo_path'
+    'id', 'user_id', 'comment_id', 'photo_path'
   ];
 
   public function comment()
   {
-    $this->hasOne('App\Comments', 'comment_id');
+    return $this->belongsTo('App\Comments', 'comment_id');
+  }
+
+  public function user()
+  {
+    return $this->belongsTo('App\User');
   }
 
 }

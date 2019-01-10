@@ -46,6 +46,11 @@ class User extends Authenticatable
       return $this->hasMany('App\Comments');
     }
 
+    public function photos()
+    {
+      return $this->hasMany('App\Photos');
+    }
+
     public function sendPasswordResetNotification($token)
     {
       $this->notify(new PasswordResetNotification($token));

@@ -15,7 +15,8 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->uuid('id');
-            $table->uuid('comment_id');
+            $table->uuid('user_id');
+            $table->uuid('comment_id')->nullable();
             $table->string('photo_path')->nullable()->unique();
             $table->timestamps();
             $table->primary('id');
