@@ -29,7 +29,7 @@
         </div>
         @if($photos->count() > 0)
           @foreach($photos as $photo)
-            <div class="col-4" style="padding:30px;">
+            <div class="col-md-4 col-12" style="padding:30px;">
               <img class="img-fluid" data-toggle="modal" data-target="#photo-{{ str_limit($photo->id, 8, '') }}" src="{{ Storage::url($photo->photo_path) }}">
             </div>
               <div class="modal fade" id="photo-{{ str_limit($photo->id, 8, '') }}" tabindex="-1" role="dialog" aria-labelledby="{{ $photo->id }}" aria-hidden="true">
