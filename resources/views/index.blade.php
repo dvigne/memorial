@@ -68,7 +68,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-1 offset-md-11" style="font-size: 15px;">
-          <a href="{{ url('comments/create') }}"><button data-toggle="tooltip" data-placement="bottom" title="Add a comment" style="font-size: 20px;" type="button" name="button" class="btn btn-primary"><i class="far fa-comment-alt"></i></button></a>
+          <a href="{{ route('comments.create') }}"><button data-toggle="tooltip" data-placement="bottom" title="Add a comment" style="font-size: 20px;" type="button" name="button" class="btn btn-primary"><i class="far fa-comment-alt"></i></button></a>
         </div>
         <div class="col-lg-8 col-md-10 mx-auto">
           @if($comments->count() > 0)
