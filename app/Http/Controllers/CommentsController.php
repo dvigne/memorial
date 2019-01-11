@@ -133,6 +133,9 @@ class CommentsController extends Controller
   {
     if($comment->user_id == Auth::user()->id) {
       $comment = Comments::findOrFail($comment->id);
+      foreach ($comment->photos()->get()->all() as $photo) {
+        Storage::delete($photo->photo_path);
+      }
       $comment->delete();
     }
     else {
