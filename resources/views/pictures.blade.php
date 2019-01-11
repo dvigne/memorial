@@ -39,13 +39,13 @@
               </div>
             @endforeach
           <br>
-          {{ $photos->links() }}
         @else
           <div class="col-md-12">
             <p>No photos here yet, be the first to <a href="{{ route('comments.create') }}">post</a> a photo.</p>
           </div>
         @endif
       </div>
+      {{ $photos->links() }}
     </div>
 
     <hr>
