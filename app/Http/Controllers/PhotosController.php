@@ -13,14 +13,14 @@ class PhotosController extends Controller
 {
     public function index()
     {
-        $photos = Photos::latest()->paginate('21');
+        $photos = Photos::has('comment')->latest()->paginate('21');
         return view('pictures')->with('photos', $photos);
     }
 
     public function store(PhotosRequest $request)
     {
       $request->validated();
-      
+
       if($request->hasFile('photo')) {
         $file = $request->photo;
         $path = Storage::putFile('photo', $file, 'public');
