@@ -135,6 +135,7 @@ class CommentsController extends Controller
       $comment = Comments::findOrFail($comment->id);
       foreach ($comment->photos()->get()->all() as $photo) {
         Storage::delete($photo->photo_path);
+        $photo->delete();
       }
       $comment->delete();
     }
