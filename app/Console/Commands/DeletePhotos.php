@@ -20,7 +20,7 @@ class DeletePhotos extends Command
      *
      * @var string
      */
-    protected $description = 'Delete Un-owned Photos From Storage and Model';
+    protected $description = 'Delete un-owned photos from storage and model';
 
     /**
      * Create a new command instance.

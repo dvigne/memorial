@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use App\Photos;
 use App\User;
 
-class ShowUsers extends Command
+class ShowPhotoCreators extends Command
 {
     /**
      * The name and signature of the console command.
@@ -20,7 +20,7 @@ class ShowUsers extends Command
      *
      * @var string
      */
-    protected $description = 'Show Photo Owners';
+    protected $description = 'Show photo owners';
 
     /**
      * Create a new command instance.

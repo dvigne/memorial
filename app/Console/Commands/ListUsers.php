@@ -19,7 +19,7 @@ class ListUsers extends Command
      *
      * @var string
      */
-    protected $description = 'Show All Active Users';
+    protected $description = 'Show all active users';
 
     /**
      * Create a new command instance.
