@@ -1,5 +1,6 @@
 {
     "/js/fileUploader.js": "/js/fileUploader.js",
+    "/js/konami.js": "/js/konami.js",
     "/js/main.js": "/js/main.js",
     "/css/main.css": "/css/main.css",
     "/css/auth.css": "/css/auth.css"

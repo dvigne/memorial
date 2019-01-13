@@ -6,5 +6,6 @@
 
 <!-- Custom scripts for this template -->
 <script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/konami.js') }}"></script>
 @stack('scripts')
 @show

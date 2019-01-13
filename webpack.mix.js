@@ -13,5 +13,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/main.js', 'public/js')
    .js('resources/js/fileUploader.js', 'public/js')
+   .js('resources/js/konami.js', 'public/js')
    .sass('resources/sass/main.scss', 'public/css')
    .sass('resources/sass/auth.scss', 'public/css');
