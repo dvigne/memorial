@@ -7,6 +7,8 @@
 <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.28.0/css/jquery.fileupload.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.28.0/css/jquery.fileupload-ui.min.css" />
 @endpush
 
 @section('title', 'In Rememberance of Joshua Barton')
@@ -94,10 +96,13 @@
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <p>Upload a png, jpeg, or bmp photo</p>
-                <input data-url="{{ route('photos.store') }}" style="font-size: unset; padding-bottom: 10px;" id="photos" type="file" name="photo" multiple>
-                <div id="progress-div" class="progress d-none">
-                  <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><span><span/></div>
+                <p>Upload a jpeg, png, bmp, gif, or svg photo</p>
+                <span style="margin-bottom: 10px;" class="btn btn-primary fileinput-button">
+                  <span><i class="fas fa-cloud-upload-alt"></i> Upload photos</span>
+                  <input data-url="{{ route('photos.store') }}" id="photos" type="file" name="photo" multiple>
+                </span>
+                <div style="height: 1.5rem;" id="progress-div" class="progress d-none">
+                  <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><span style="font-weight: bold; font-size: 15px;"><span/></div>
                 </div>
                 <div id="finishedList">
                 </div>

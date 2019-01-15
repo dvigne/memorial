@@ -31,6 +31,13 @@
           @foreach($photos as $photo)
             <div class="col-md-4 col-12" style="padding:30px;">
               <img class="img-fluid" data-toggle="modal" data-target="#photo-{{ str_limit($photo->id, 8, '') }}" src="{{ Storage::url($photo->photo_path) }}">
+              <div class="post-preview">
+                <p class="post-meta">
+                  <a style="color: grey;"href="{{ route('comments.show', $photo->comment->id) }}">
+                    {{ title_case($photo->user->first . " " . $photo->user->last) . " on " . str_limit($photo->created_at, 10, '') }}
+                  </a>
+                </p>
+              </div>
             </div>
               <div class="modal fade" id="photo-{{ str_limit($photo->id, 8, '') }}" tabindex="-1" role="dialog" aria-labelledby="{{ $photo->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">

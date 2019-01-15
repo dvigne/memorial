@@ -13,7 +13,7 @@ class ShowPhotos extends Command
      *
      * @var string
      */
-    protected $signature = 'photos:show';
+    protected $signature = 'photos:list';
 
     /**
      * The console command description.
