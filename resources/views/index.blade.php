@@ -43,21 +43,7 @@
               <h1>In Memory of <br />Joshua S. Barton</h1>
               <span class="subheading">6/30/1989-12/8/2018</span>
               <hr style="border-top: 1px solid white;" />
-              <h3>Memorial Service</h3>
-              <div class="row">
-                <div class="col-6">
-                  <h2>Time</h2>
-                </div>
-                <div class="col-6">
-                  <h2>Location</h2>
-                </div>
-                <div class="col-6">
-                  <h5>Sunday January 20th at 12:30pm</h5>
-                </div>
-                <div class="col-6">
-                  <a style="color: white;" href="https://goo.gl/maps/qHEaLC9mAA52"><h5>Church at the Mall <br />1010 E Memorial Blvd, Lakeland, FL 33801</h5></a>
-                </div>
-              </div>
+              <h3>Help support the family's memorial costs by donating at <a style="color: white; text-decoration: underline;"href="https://gf.me/u/p68fz3">Go Fund Me</a></h3>
             </div>
           </div>
         </div>
